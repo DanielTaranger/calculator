@@ -1,0 +1,68 @@
+.automation {
+    min-height: 458px;
+    width: 200px;
+    background-color: #3a3a3a;
+    position: absolute;
+    left: 10px;
+    padding: 10px;
+    z-index: -1;
+    transition: left 200ms;
+    border-radius: 10px 0px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.open {
+    position: absolute;
+    left: -200px;
+    transition: left 200ms;
+}
+
+.toggleAutomation {
+    border: none;
+    padding: 15px;
+    height: 50px;
+    background-color: #3a3a3a;
+    color: white;
+    position: absolute;
+    left: -41px;
+    top: 40px;
+    z-index: 2;
+    font-size: 20px;
+    transition: all 200ms;
+    z-index: -1;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.toggleAutomation:hover {
+    cursor: pointer;
+    background-color: #4f4f4f;
+    color: white;
+}
+
+
+.toggleAutomation.open {
+    position: absolute;
+    left: -241px;
+    transition: left 200ms;
+}
+
+.upgradeButton {
+    padding: 5px;
+    width: calc(100% - 20px);
+    border: 1px solid gray;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+    background-color: #232323;
+    color: white;
+    display: inline-block;
+}
+
+.upgradeButton:hover {
+    cursor: pointer;
+    background-color: #5a5a5a;
+    color: white;
+}

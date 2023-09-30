@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import './calculator.css';
 import { evaluate } from 'mathjs';
-import Automation from './automation/automation';
+import Upgrades from './upgrades/upgrades';
+import {Costs} from '../../types';
 
 function Calculator() {
+  const costs: Costs = {tickRateCost: 80, numberCost: 100}
+
+
   const [input, setInput] = useState('');
   const [tickRate, setTickRate] = useState(1000);
   const [total, setTotal] = useState(0);
+
 
   const handleButtonClick = (buttonText: string | number) => {
     if (buttonText === '=') {
@@ -22,6 +27,7 @@ function Calculator() {
 
   const updateTickRate = () => {
     setTickRate(tickRate * 0.9);
+    setTotal(total - costs.tickRateCost);
   }
 
   const updateGameState = () => {
@@ -34,8 +40,8 @@ function Calculator() {
   }, [total]);
 
   return (
-    <div className="row">
-      <Automation />
+    <div className="row calculatorContainer">
+      <Upgrades costs={costs} total={total} upgradeTickrate={updateTickRate}/>
       <div className="calculator">
         <div className="total">{total}</div>
         <div className="input">{input}</div>
@@ -58,7 +64,7 @@ function Calculator() {
             </div>
             <div className="row">
               <button disabled={false} onClick={() => handleButtonClick(0)}>0</button>
-              <button disabled={false} onClick={() => updateTickRate()}>,</button>
+              <button disabled={false} onClick={() => handleButtonClick(',')}>,</button>
               <button disabled={false} onClick={() => handleButtonClick('CE')}>CE</button>
             </div>
           </div>
