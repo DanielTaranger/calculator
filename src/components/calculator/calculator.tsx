@@ -1,16 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import './calculator.css';
-import { evaluate } from 'mathjs';
+import { compile, evaluate } from 'mathjs';
 import Automation from './automation/automation';
 
 function Calculator() {
+  const operators = ["+", "-", "*", "/"];
   const [input, setInput] = useState('');
   const [tickRate, setTickRate] = useState(1000);
   const [total, setTotal] = useState(0);
 
+  const isValidInput = (e: string) => {
+    try {
+      const valid = compile(e);
+      return true;
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+  }
+
   const handleButtonClick = (buttonText: string | number) => {
     if (buttonText === '=') {
-      setTotal(total + evaluate(input));
+      if (isValidInput(input) && operators.some(char => input.includes(char))) { //if input is compilable and contains any of the operators
+        setTotal(total + evaluate(input));
+        setInput('');
+      }
     } else if (buttonText === '<') {
       setInput(input.slice(0, -1));
     } else if (buttonText === 'CE') {
@@ -58,7 +72,7 @@ function Calculator() {
             </div>
             <div className="row">
               <button disabled={false} onClick={() => handleButtonClick(0)}>0</button>
-              <button disabled={false} onClick={() => updateTickRate()}>,</button>
+              <button disabled={false} onClick={() => handleButtonClick('.')}>.</button>
               <button disabled={false} onClick={() => handleButtonClick('CE')}>CE</button>
             </div>
           </div>
