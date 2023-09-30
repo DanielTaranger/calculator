@@ -1,0 +1,9 @@
+.automation {
+    height: 100%;
+    background-color: red;
+    position: relative;
+}
+.toggleAutomation {
+    position: absolute;
+
+}
