@@ -8,7 +8,7 @@ function Automation() {
     <div className="automation">
       { open&&
         <div className="automationContent">
-        Test
+        Test1234
       </div>
       }
       <button className="toggleAutomation" onClick={() => setOpen(!open)}>Knapp</button>
