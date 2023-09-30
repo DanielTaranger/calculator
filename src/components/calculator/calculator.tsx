@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './calculator.css';
-import { compile, evaluate } from 'mathjs';
+import { compile, evaluate, round } from 'mathjs';
 import Upgrades from './upgrades/upgrades';
 import { Costs } from '../../types';
 
@@ -54,7 +54,7 @@ function Calculator() {
     <div className="row calculatorContainer">
       <Upgrades costs={costs} total={total} upgradeTickrate={updateTickRate} />
       <div className="calculator">
-        <div className="total">{total}</div>
+        <div className="total">{round(total,2)}</div>
         <div className="input">{input}</div>
         <div className="row">
           <div className="column">
